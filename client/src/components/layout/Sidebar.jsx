@@ -10,6 +10,8 @@ import {
   UserIcon,
 } from "lucide-react";
 import { Dropdown, DropdownItem } from "../ui/Dropdown";
+import { ProgressBar } from "../ui/ProgressBar";
+import { formatBytes } from "../../assets/assets";
 
 const Sidebar = ({ onCreateFolderClick, isMobileOpen, setIsMobileOpen }) => {
   const isUploading = false;
@@ -117,12 +119,20 @@ const Sidebar = ({ onCreateFolderClick, isMobileOpen, setIsMobileOpen }) => {
         </nav>
 
         {/* Storage usage widget */}
-        <div>
-          <p>Storage usage</p>
+        <div className="p-4 border-t border-slate-200 bg-slate-50">
+          <div className="flex items-center justify-between text-xs mb-2">
+            <span className="text-slate-600 font-medium">Storage </span>
+            <span className="text-slate-900 font-semibold">
+              {used_percentage}%
+            </span>
+          </div>
+          <ProgressBar progress={used_percentage} color={used_percentage > 90 ? "bg-red-500" : used_percentage > 75 ? "bg-amber-600" : "bg-green-500"}/>
+            <p className="text-[11px] text-slate-500 mt-2">
+              {formatBytes(storage_used)} of {formatBytes(storage_limit)} used
+            </p>
         </div>
       </aside>
     </>
   );
 };
-
 export default Sidebar;
