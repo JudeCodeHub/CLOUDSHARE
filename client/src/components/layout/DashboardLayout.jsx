@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 const DashboardLayout = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -15,7 +16,7 @@ const DashboardLayout = () => {
       <div className="md:pl-64 flex flex-col flex-1">
 
         {/* header */}
-        <p>Header</p>
+        <Header onMobileMenuToggle={() => setIsMobileOpen(!isMobileOpen)} />
 
         {/* main content */}
         <main className="flex-1 p-4 md:p-6 overflow3-y-auto">
